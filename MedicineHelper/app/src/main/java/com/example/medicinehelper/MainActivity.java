@@ -3,10 +3,12 @@ package com.example.medicinehelper;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.example.medicinehelper.battery_check.BatteryChangeReceiver;
 import com.example.medicinehelper.battery_check.BatteryCheckService;
+import com.example.medicinehelper.restarter.RestartServiceBrodcastReceiver;
 
 public class MainActivity extends AppCompatActivity {
     private BatteryCheckService batteryCheckService;
@@ -26,5 +28,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         unregisterReceiver(batteryChangeReceiver);
         super.onDestroy();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            RestartServiceBrodcastReceiver.scheduleJob(getApplicationContext());
+        }else{
+            MainServiceHelperClass backgroundService = new MainServiceHelperClass();
+            backgroundService.launchService(getApplicationContext());
+        }
     }
 }
