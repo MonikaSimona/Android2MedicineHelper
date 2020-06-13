@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.medicinehelper">
 
-    <uses-permission android:name="android.permission.RECEIVE_LAUNCH_BROADCASTS"/>
+    <uses-permission android:name="android.permission.RECEIVE_LAUNCH_BROADCASTS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,18 +13,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MedicineList"></activity>
 
-        <service android:name=".restarter.HelperJobService"
+        <service
+            android:name=".restarter.HelperJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-
         <service
             android:name=".MainService"
             android:clearTaskOnLaunch="true"
             android:enabled="true"
             android:excludeFromRecents="true"
-            android:launchMode="singleInstance"
-            />
-
+            android:launchMode="singleInstance" />
 
         <receiver
             android:name=".restarter.RestartServiceBrodcastReceiver"
@@ -31,11 +31,12 @@
             android:exported="true"
             android:label="StartMyServiceAtBootReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
-                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
-                <action android:name="com.example.medicinehelper.activity_recognition.main_service.RestartMainService"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="com.example.medicinehelper.activity_recognition.main_service.RestartMainService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
 
@@ -60,10 +61,6 @@
                 <action android:name="com.example.medicinehelper.intent.action.ACTION_BATTERY_CHANGED" />
             </intent-filter>
         </receiver>
-
-
-
-
     </application>
 
 </manifest>

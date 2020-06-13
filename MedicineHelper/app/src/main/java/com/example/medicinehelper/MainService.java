@@ -81,7 +81,7 @@ public class MainService extends Service {
             Log.d(TAG, "restartForeground: restarting foreground!");
             try{
                 ServicePresentNotification notification =  new ServicePresentNotification();
-                startForeground(NOTIFICATION_ID,notification.setNotification(this,"MedicineHelper","Your Medicine Helper is set.",R.drawable.ic_medicine_helper));
+                startForeground(NOTIFICATION_ID,notification.setNotification(this,"Медицински Помошник","Вашиот Медицински помошник е во функција.",R.drawable.ic_medicine_helper));
                 Log.d(TAG, "restartForeground: restarting foreground successful");
                 startTimer();
             }catch (Exception e){

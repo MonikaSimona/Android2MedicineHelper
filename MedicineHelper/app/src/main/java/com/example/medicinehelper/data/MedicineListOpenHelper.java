@@ -1,7 +1,9 @@
 package com.example.medicinehelper.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -30,8 +32,10 @@ public class MedicineListOpenHelper extends SQLiteOpenHelper {
                     KEY_NUM_OF_PILLS + " INTEGER, " +
                     KEY_INTAKE_INTERVAL + " INTEGER ); ";
 
-    public MedicineListOpenHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+
+
+    public MedicineListOpenHelper(@Nullable Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
@@ -73,5 +77,35 @@ public class MedicineListOpenHelper extends SQLiteOpenHelper {
 
             return entry;
         }
+    }
+
+    public long insert(String medicineName, int numPills, int intakeInterval){
+        long newId = 0;
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_MEDICINE,medicineName);
+        values.put(KEY_NUM_OF_PILLS,numPills);
+        values.put(KEY_INTAKE_INTERVAL,intakeInterval);
+
+        try{
+
+            if(mWritableDB == null){
+                mWritableDB = getWritableDatabase();
+            }
+            newId = mWritableDB.insert(MEDICINE_LIST_TABLE,null,values);
+
+        }catch (Exception e){
+            Log.d("SIMONA", "Insert Exception! " + e.getMessage());
+
+        }
+        return newId;
+    }
+
+
+    public long count(){
+        if(mReadableDB == null){
+            mReadableDB = getReadableDatabase();
+        }
+        return DatabaseUtils.queryNumEntries(mReadableDB, MEDICINE_LIST_TABLE);
     }
 }
