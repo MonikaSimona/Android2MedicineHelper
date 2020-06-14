@@ -20,7 +20,9 @@ public class BatteryChangeNotification {
         notification = builder.setSmallIcon(icon)
                                 .setContentTitle(title)
                                 .setContentText(text)
-                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                .setAutoCancel(true)
+                                .setDefaults(NotificationCompat.DEFAULT_ALL)
                                 .build();
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(Notification_id,notification);

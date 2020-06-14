@@ -13,7 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MedicineList"></activity>
+        <receiver
+            android:name=".alarm.FireAlarmBroadcastReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.example.medicinehelper.alarm.ACTION_NOTIFY"/>
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".MedicineList" />
 
         <service
             android:name=".restarter.HelperJobService"
