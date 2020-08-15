@@ -5,15 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:gravity="center">
+    android:gravity="center"
+    >
 
     <TextView
         android:id="@+id/inf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Внесете информации за лековите"
-        android:layout_marginBottom="50dp"
         android:textSize="20sp"
+        android:layout_marginLeft="25dp"
         />
     <TextView
         android:id="@+id/nameText"
@@ -23,6 +24,7 @@
         android:layout_below="@+id/inf"
         android:layout_marginTop="10dp"
         android:textSize="20sp"
+        android:layout_marginLeft="25dp"
         />
     <EditText
         android:id="@+id/nameEdit"
@@ -30,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/nameText"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
 
         />
     <TextView
@@ -39,6 +42,7 @@
         android:text="Број на таблети во пакување"
         android:layout_below="@+id/nameEdit"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
         android:textSize="20sp"
         />
     <EditText
@@ -47,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/num_pillsText"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
 
         />
     <TextView
@@ -56,6 +61,7 @@
         android:text="На колку време се пие лекот"
         android:layout_below="@+id/num_pillsEdit"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
         android:textSize="20sp"
         />
     <EditText
@@ -64,6 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/intake_intervalText"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
 
         />
     <TextView
@@ -76,24 +83,74 @@
         android:text=" часа"
         android:textSize="20sp"
         />
+    <RelativeLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/intake_intervalEdit"
+        android:layout_marginHorizontal="10dp"
+        >
+        <Button
+            android:id="@+id/insertButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Внеси лек"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="60dp"
+
+            android:onClick="insertMedicine"
+            />
+        <TextView
+            android:id="@+id/arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="->"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="5dp"
+            />
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+
+
+            android:text="почни лек"
+
+            android:onClick="startMedicine"/>
+    </RelativeLayout>
+
 
     <Button
-        android:id="@+id/insertButton"
+        android:id="@+id/checkButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/intake_intervalEdit"
-        android:text="Внеси лек"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="100dp"
-        android:onClick="insertMedicine"
-         />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="85dp"
-        android:layout_below="@+id/insertButton"
+        android:layout_marginLeft="110dp"
+        android:layout_below="@+id/buttonsLayout"
         android:text="Провери лекови"
-        android:onClick="medicineList"/>
+        android:onClick="medicineList"
+        android:layout_marginTop="10dp"/>
+    <EditText
+        android:id="@+id/editCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/checkButton"
+        android:layout_marginLeft="60dp"
+
+        android:hint="Лек за прекин"
+        />
+    <Button
+        android:id="@+id/cancelbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/checkButton"
+        android:layout_toRightOf="@+id/editCancel"
+
+        android:text="прекини лек"
+        android:onClick="cancelMedicine"
+        />
 
 
 

@@ -10,6 +10,8 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import java.io.IOException;
+
 public class MedicineListOpenHelper extends SQLiteOpenHelper {
     private SQLiteDatabase mWritableDB;
     private SQLiteDatabase mReadableDB;
@@ -62,7 +64,7 @@ public class MedicineListOpenHelper extends SQLiteOpenHelper {
 
         try{
             if(mReadableDB == null){
-                mReadableDB =getReadableDatabase();
+                mReadableDB = getReadableDatabase();
             }
             cursor = mReadableDB.rawQuery(query,null);
             cursor.moveToFirst();
@@ -108,4 +110,44 @@ public class MedicineListOpenHelper extends SQLiteOpenHelper {
         }
         return DatabaseUtils.queryNumEntries(mReadableDB, MEDICINE_LIST_TABLE);
     }
+
+    public int delete(String medicine_name){
+        int deleted = 0;
+        try {
+
+            if (mWritableDB == null){
+                mWritableDB = getWritableDatabase();
+            }
+            String selection  = KEY_MEDICINE+" LIKE ?";
+            String[] selection_args = {medicine_name};
+            deleted = mWritableDB.delete(MEDICINE_LIST_TABLE,selection,selection_args);
+
+        }catch (Exception e){
+            Log.d("SIMONA", "delete error" + e.getMessage());
+
+        }
+
+        return deleted;
+    }
+
+    public Cursor search(String searchString){
+        String[] columns = new String[]{KEY_MEDICINE};
+        searchString = "%" + searchString + "%";
+        String where = KEY_MEDICINE + " LIKE ?";
+        String[] whereArgs = new String []{searchString};
+        Cursor cursor = null;
+        try{
+            if(mReadableDB == null){
+                mReadableDB = getReadableDatabase();
+            }
+            cursor = mReadableDB.query(MEDICINE_LIST_TABLE, columns, where,whereArgs,null,null,null);
+
+
+        }catch (Exception e){
+            Log.d("SIMONA", "search error" + e.getMessage());
+        }
+        return  cursor;
+    }
+
+
 }

@@ -2,7 +2,9 @@ package com.example.medicinehelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.medicinehelper.data.Medicine;
@@ -46,5 +48,10 @@ public class MedicineList extends AppCompatActivity {
 
         }
         list.setText(printList);
+    }
+
+    public void toDeleteMedicineActivity(View view) {
+        Intent intent = new Intent(this,DeleteMedicine.class);
+        startActivity(intent);
     }
 }

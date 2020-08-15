@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.medicinehelper">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_LAUNCH_BROADCASTS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -13,16 +14,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <receiver
             android:name=".alarm.FireAlarmBroadcastReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.example.medicinehelper.alarm.ACTION_NOTIFY"/>
+                <action android:name="com.example.medicinehelper.alarm.ACTION_NOTIFY" />
             </intent-filter>
         </receiver>
 
         <activity android:name=".MedicineList" />
+        <activity android:name=".DeleteMedicine"/>
+
 
         <service
             android:name=".restarter.HelperJobService"
@@ -48,6 +53,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name=".battery_check.BatteryChangeReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.medicinehelper.intent.action.ACTION_BATTERY_CHANGED" />
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -62,14 +75,7 @@
             android:enabled="true"
             android:exported="true" />
 
-        <receiver
-            android:name=".battery_check.BatteryChangeReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.example.medicinehelper.intent.action.ACTION_BATTERY_CHANGED" />
-            </intent-filter>
-        </receiver>
+
     </application>
 
 </manifest>

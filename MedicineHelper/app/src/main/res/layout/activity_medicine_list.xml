@@ -15,8 +15,9 @@
         android:padding="8dp"
     />
     <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_below="@id/inf">
         <TextView
             android:id="@+id/list"
@@ -30,6 +31,15 @@
 
             />
     </ScrollView>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scroll"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="30dp"
+        android:text="ИЗБриши лек"
+        android:onClick="toDeleteMedicineActivity"
+        />
 
 
 </RelativeLayout>

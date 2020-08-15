@@ -17,14 +17,9 @@ public class FireAlarmBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
-        FireMedicineAlarm fireMedicineAlarm = new FireMedicineAlarm();
-        name = fireMedicineAlarm.getMedicineName();
+        name = intent.getStringExtra("medicineName");
         alarmNotification = new BatteryChangeNotification();
         medicineToTake = "ТРЕБА ДА ГО ИСПИЕТЕ ЛЕКОТ " + name.toUpperCase();
-        alarmNotification.setNotification(context,"personal_notification",NOTIFICATION_ID,"ВРЕМЕ ЗА ЛЕК","medicineToTake", R.drawable.ic_medicine_helper);
-
-
-
+        alarmNotification.setNotification(context,"personal_notification",NOTIFICATION_ID,"ВРЕМЕ ЗА ЛЕК",medicineToTake, R.drawable.ic_medicine_helper);
     }
 }

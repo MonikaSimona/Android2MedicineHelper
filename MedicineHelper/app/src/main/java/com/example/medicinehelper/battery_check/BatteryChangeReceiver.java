@@ -24,7 +24,7 @@ public class BatteryChangeReceiver extends BroadcastReceiver {
         final int maxLevel = batteryChangeIntent.getIntExtra(
                 BatteryManager.EXTRA_SCALE, -1);
         final int percentage = (int) Math.round((currLevel * 100.0) / maxLevel);
-        Log.i("BATTERY", "checkBatteryLevel: chacking");
+        Log.i("BATTERY", "checkBatteryLevel: checking");
         if (percentage == 20) {
             Log.i("BATTERY", "battery at 20 percent");
             //nottifiaction for pluging the power source
