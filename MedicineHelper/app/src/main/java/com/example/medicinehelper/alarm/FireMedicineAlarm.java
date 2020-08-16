@@ -26,7 +26,7 @@ public class FireMedicineAlarm {
 
         Intent notifyIntent = new Intent(ACTION_NOTIFY);
         notifyIntent.putExtra("medicineName",medicineName);
-        final PendingIntent notifyPendingIntent = PendingIntent.getBroadcast(context,notificationID,notifyIntent,PendingIntent.FLAG_ONE_SHOT);
+        final PendingIntent notifyPendingIntent = PendingIntent.getBroadcast(context,notificationID,notifyIntent,PendingIntent.FLAG_IMMUTABLE);
 
         AlarmManager alarm  = (AlarmManager) context.getSystemService(context.ALARM_SERVICE);
 

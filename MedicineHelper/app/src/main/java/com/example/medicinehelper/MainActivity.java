@@ -113,9 +113,6 @@ public class MainActivity extends AppCompatActivity {
 
             alarm.startAlarm(this,nameString,num_pills,intake_interval,notificationID);
         }
-
-
-
     }
 
     public void cancelMedicine(View view) {
@@ -131,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 FireMedicineAlarm alarm = new FireMedicineAlarm();
                 alarm.cancelAlarm(this,medicineToCancel,ID);
                 mDB.delete(medicineToCancel);
+                editCancel.setText("");
             }
         }
 
