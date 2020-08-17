@@ -35,7 +35,7 @@ public class MainService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
          super.onStartCommand(intent, flags, startId);
 
-        Log.d(TAG, "onStartCommand: restarting service");
+//        Log.d(TAG, "onStartCommand: restarting service");
         counter = 0;
 
         if(intent == null){
@@ -51,20 +51,20 @@ public class MainService extends Service {
     }
 
     private void startTimer() {
-        Log.i(TAG, "startTimer: starting timer");
+//        Log.i(TAG, "startTimer: starting timer");
         stopTimerTask();
         timer = new Timer();
         initializeTimerTask();
-        Log.d(TAG, "startTimer: Scheduling.. ");
+//        Log.d(TAG, "startTimer: Scheduling.. ");
         timer.schedule(timerTask,1000,1000); // 1 second ticking timer
     }
 
     private void initializeTimerTask() {
-        Log.d(TAG, "initializeTimerTask: initializing TimerTask");
+//        Log.d(TAG, "initializeTimerTask: initializing TimerTask");
         timerTask = new TimerTask() {
             @Override
             public void run() {
-                Log.d(TAG, "run: in timer +++++++ "+ (counter++));
+//                Log.d(TAG, "run: in timer +++++++ "+ (counter++));
             }
         };
     }
@@ -99,7 +99,7 @@ public class MainService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy called");
+//        Log.d(TAG, "onDestroy called");
         Intent broadcastIntent = new Intent(Global.RESTART_INTENT);
         sendBroadcast(broadcastIntent);
         stopTimerTask();
@@ -108,7 +108,7 @@ public class MainService extends Service {
     @Override
     public void onTaskRemoved(Intent rootIntent) {
         super.onTaskRemoved(rootIntent);
-        Log.i(TAG, "onTaskRemoved caled");
+//        Log.i(TAG, "onTaskRemoved caled");
         Intent broadcastIntent =  new Intent(Global.RESTART_INTENT);
         sendBroadcast(broadcastIntent);
     }

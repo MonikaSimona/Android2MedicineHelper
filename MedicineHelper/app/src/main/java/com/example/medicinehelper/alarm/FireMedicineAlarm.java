@@ -30,12 +30,14 @@ public class FireMedicineAlarm {
 
         AlarmManager alarm  = (AlarmManager) context.getSystemService(context.ALARM_SERVICE);
 
-        long testTriggerTime = SystemClock.currentThreadTimeMillis(); //za test
-//        long triggerTime = SystemClock.currentThreadTimeMillis() + AlarmManager.INTERVAL_HOUR * intakeInterval;  // NE go brisi
-//        long repeatInterval = AlarmManager.INTERVAL_HOUR * intakeInterval;
-        long repeatInterval = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
+//        long testTriggerTime = SystemClock.currentThreadTimeMillis(); //za test
+//        long repeatInterval = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
 
-        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP,testTriggerTime,repeatInterval,notifyPendingIntent);
+        long triggerTime = SystemClock.currentThreadTimeMillis() + AlarmManager.INTERVAL_HOUR * intakeInterval;  // NE go brisi
+        long repeatInterval = AlarmManager.INTERVAL_HOUR * intakeInterval;
+
+
+        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP,triggerTime,repeatInterval,notifyPendingIntent);
 
     }
 
